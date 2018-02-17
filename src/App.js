@@ -5,10 +5,12 @@ import './App.css';
 
 import Layout from './hoc/Layout/Layout';
 import Table from './components/Table/Table';
+import Spinner from './components/UI/Spinner/Spinner';
 
 class App extends Component {
 	state = {
 		tableData: null,
+		loading: true,
 		error: false
 	}
 
@@ -16,7 +18,7 @@ class App extends Component {
 		axios.get( 'https://fcctop100.herokuapp.com/api/fccusers/top/recent' )
             .then( response => {
             	let recentData = response.data.map( data => (
-            		<tr>
+            		<tr key={response.data.indexOf(data) + 1}>
             			<td> {response.data.indexOf(data) + 1} </td>
             			<td> <img src={data.img}/> {data.username} </td>
             			<td> {data.recent} </td>
@@ -24,31 +26,38 @@ class App extends Component {
             		</tr>
             		) 
             	);
-                this.setState( { ...this.state, tableData: recentData } );
+                this.setState( { ...this.state, loading: false, tableData: recentData } );
             } )
             .catch( error => {
                 this.setState( { ...this.state, error: true } );
             } );
 
-        axios.get( 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime' )
-            .then( response => {
-            	console.log(response.data);
-                this.setState( { ingredients: response.data } );
-            } )
-            .catch( error => {
-                this.setState( { error: true } );
-            } );
+        // axios.get( 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime' )
+        //     .then( response => {
+        //     	let allTimeData = response.data.map( data => (
+        //     		<tr key={response.data.indexOf(data) + 1}>
+        //     			<td> {response.data.indexOf(data) + 1} </td>
+        //     			<td> <img src={data.img}/> {data.username} </td>
+        //     			<td> {data.recent} </td>
+        //     			<td> {data.alltime} </td>
+        //     		</tr>
+        //     		) 
+        //     	);
+        //         //this.setState( { ...this.state, tableData: allTimeData } );
+        //     } )
+        //     .catch( error => {
+        //         this.setState( { ...this.state, error: true } );
+        //     } );
+            
 	}
 
 	render() {
-		// const tableDisplay = this.state.loading ? <Spinner /> : tableData;
+		const tableDisplay = this.state.loading ? <Spinner /> : <Table>{this.state.tableData}</Table>;
 
 	return (
 		<div className="App">
 			<Layout>
-				<Table>
-					{this.state.tableData}
-			  	</ Table>
+				{tableDisplay}
 		  	</Layout>
 		</div>
 	)};
