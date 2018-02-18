@@ -6,8 +6,8 @@ const Table = (props) => (
 			<tr>
 				<th> # </th>
 				<th> Camper Name </th>
-				<th> Points In Last 30 Days </th>
-				<th> All Time </th>
+				<th onClick={props.recentClick}> Points In Last 30 Days </th>
+				<th onClick={props.allTimeClick}> All Time </th>
 			</tr>
 		</thead>
 		<tbody>
