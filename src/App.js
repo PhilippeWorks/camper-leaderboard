@@ -6,6 +6,7 @@ import './App.css';
 import Layout from './hoc/Layout/Layout';
 import Table from './components/Table/Table';
 import Spinner from './components/UI/Spinner/Spinner';
+import ErrorMsg from  './components/UI/ErrorMsg/ErrorMsg';
 
 class App extends Component {
 	state = {
@@ -44,9 +45,13 @@ class App extends Component {
 	}
 
 	render() {
+		if (this.state.error === true) {
+			return <ErrorMsg />
+		}
+
 		let tableDisplay = !this.state.tableInfo ? <Spinner /> : <Table 
 				recentClick={ () => this.clickHandler("recent") }
-				allTimeClick={ () => this.clickHandler("allTime") }> {this.state.tableInfo} </Table>;
+				allTimeClick={ () => this.clickHandler("allTime") }>{this.state.tableInfo}</Table>;
 
 		return (
 			<div className="App">
