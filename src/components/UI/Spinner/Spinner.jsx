@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Spinner = () => (
-    <div className="Loader">Loading...</div>
+import styles from './Spinner.css';
+
+const spinner = () => (
+    <div className={styles.hourglass} > </div>
 );
 
-export default Spinner;
+export default spinner;

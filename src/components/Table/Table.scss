@@ -1,0 +1,30 @@
+.Table {
+	width: 75%;
+	border: solid;
+	margin: auto;
+	background-color: gray;
+	border-radius: 8px;
+	padding: 1% 2% 1% 2%; 
+
+	thead {
+		tr {
+			th {
+				padding: 5px;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			td {
+				border: solid;
+				text-align: center;
+
+				img {
+					width: 35px;
+				}
+			}
+		}
+	}
+
+}
