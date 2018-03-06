@@ -4,6 +4,7 @@ import styles from './Table.css';
 
 const table = (props) => (
 	<table className={styles.Table}>
+		<caption> Point Leaders </caption>
 		<thead>
 			<tr>
 				<th> # </th>

@@ -2,11 +2,14 @@ import React from 'react';
 
 import Auxiliary from '../Auxiliary/Auxiliary';
 
+import './Layout.css';
+
 const layout = ( props ) => (
 	<Auxiliary>
-		<header> <h1>FreeCodeCamp Point Leaders</h1> </header>
+		<header> <img src={require("../../assets/imgs/freeCodeCamp.png")}
+		 alt="freeCodeCamp Logo" /></header>
 		{props.children}
-	</Auxiliary>
+	</Auxiliary> 
 );
 
 export default layout;
